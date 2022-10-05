@@ -55,7 +55,7 @@ jobs:
           file: ./.docker/node/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/auth:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/minio:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 

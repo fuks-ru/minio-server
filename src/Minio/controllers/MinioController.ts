@@ -25,8 +25,7 @@ export class MinioController {
   @Get('/')
   @Public()
   public get() {
-
-    this.logger.error('asdsd', new Error().stack);
+    this.logger.error('Ошибка');
   }
 
   @Post('/upload')

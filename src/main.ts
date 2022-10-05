@@ -21,6 +21,7 @@ import { MinioService } from 'app/Minio/servives/MinioService';
 
   // await minioService.createDefaultBucketIfNotExists();
 
+
   app.useLogger(appLogger);
 
   await app.listen(configGetter.getApiPort());

@@ -47,7 +47,6 @@ jobs:
             --rm -d \
             -e "MINIO_ROOT_USER=${{ secrets.MINIO_USER }}" \
             -e "MINIO_ROOT_PASSWORD=${{ secrets.MINIO_PASSWORD }}" \
-            -v ${PWD}/var/data:/data \
             -v "/server/${{ env.BACKEND_CONTAINER }}/minio/data":/data \
             --network="fuks-ru" \
             minio/minio server /data --console-address ":9001"

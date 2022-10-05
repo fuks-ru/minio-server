@@ -25,6 +25,6 @@ export class ConfigGetter {
   }
 
   public getAuthBackendDomainWithScheme(): string {
-    return 'http://localhost:3003'
+    return 'http://localhost:3003';
   }
 }

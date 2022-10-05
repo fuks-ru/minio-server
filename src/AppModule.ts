@@ -5,10 +5,8 @@ import { ConfigModule } from 'app/Config/ConfigModule';
 import { MinioModule } from 'app/Minio/MinioModule';
 import { NestMinioModule } from 'nestjs-minio';
 import { AuthModule } from '@fuks-ru/auth-module';
-import { AppLogger } from 'app/AppLogger';
 
 @Module({
-  providers: [AppLogger],
   imports: [
     ConfigModule,
     CommonModule.forRootAsync({

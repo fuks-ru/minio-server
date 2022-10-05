@@ -15,12 +15,12 @@ import { MinioService } from 'app/Minio/servives/MinioService';
     },
     bufferLogs: true,
   });
+
   const configGetter = app.get(ConfigGetter);
   const minioService = app.get(MinioService);
   const appLogger = app.get(Logger);
 
-  // await minioService.createDefaultBucketIfNotExists();
-
+  await minioService.createDefaultBucketIfNotExists();
 
   app.useLogger(appLogger);
 

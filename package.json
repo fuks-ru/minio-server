@@ -7,9 +7,13 @@
   "license": "MIT",
   "packageManager": "yarn@3.2.3",
   "scripts": {
+    "build": "ttsc --project tsconfig.build.json",
+    "prod": "cross-env NODE_ENV=production node ./dist/main.js",
     "dev:docker": "docker run --name minio --rm -p 9000:9000 -p 9001:9001 -e \"MINIO_ROOT_USER=user123\" -e \"MINIO_ROOT_PASSWORD=secret123\" -v ${PWD}/var/data:/data minio/minio server /data --console-address \":9001\"",
     "dev:server": "cross-env NODE_ENV=development ts-node-dev -r tsconfig-paths/register --transpile-only --inspect=0.0.0.0:5005 ./src/main.ts",
-    "dev": "concurrently \"yarn run dev:docker\" \"yarn run dev:server\""
+    "dev": "concurrently \"yarn run dev:docker\" \"yarn run dev:server\"",
+    "lint": "eslint \"{**/*,*}.{ts,tsx,js,jsx,json}\"",
+    "lint:fix": "yarn run lint --fix"
   },
   "main": "./dist/lib/index.js",
   "module": "./dist/lib/index.js",
@@ -18,7 +22,7 @@
     "@fuks-ru/auth-client": "0.4.5",
     "@fuks-ru/auth-module": "0.0.5",
     "@fuks-ru/common": "0.0.9",
-    "@fuks-ru/common-backend": "portal:../common/packages/common-backend",
+    "@fuks-ru/common-backend": "0.4.2",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/platform-express": "^9.1.2",

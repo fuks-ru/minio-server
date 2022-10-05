@@ -148,9 +148,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/common-backend@portal:../common/packages/common-backend::locator=%40fuks-ru%2Fminio-server%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@fuks-ru/common-backend@portal:../common/packages/common-backend::locator=%40fuks-ru%2Fminio-server%40workspace%3A."
+"@fuks-ru/common-backend@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@fuks-ru/common-backend@npm:0.4.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.4.2%2F6046bc438325da397608ee8aac67cb64f32861c4"
   dependencies:
     "@rollup/plugin-json": ^4.1.0
     "@types/argon2": ^0.15.0
@@ -178,8 +178,9 @@ __metadata:
     nestjs-i18n: ^9.1.3
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
+  checksum: 4ed74c269eedba5debcab258bc8edc112a36ad7fed37118a9ef83bf0683df7b513079eb4ed1af3159cbfdcc3480f926cdc297a2356c9eb451406feca84189371
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@fuks-ru/common@npm:0.0.9":
   version: 0.0.9
@@ -195,7 +196,7 @@ __metadata:
     "@fuks-ru/auth-client": 0.4.5
     "@fuks-ru/auth-module": 0.0.5
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": "portal:../common/packages/common-backend"
+    "@fuks-ru/common-backend": 0.4.2
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     "@nestjs/platform-express": ^9.1.2

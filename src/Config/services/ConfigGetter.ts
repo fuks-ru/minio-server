@@ -17,7 +17,7 @@ export class ConfigGetter {
   }
 
   public getApiPrefix(): string {
-    return '/static';
+    return '/static-bucket';
   }
 
   public getMinioConfig(): NestMinioOptions {

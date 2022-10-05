@@ -8,7 +8,7 @@ server {
     proxy_pass http://${MINIO_CONTAINER}:9001;
   }
 
-  location /static {
+  location /static-bucket {
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $http_host;
     proxy_pass http://${BACKEND_CONTAINER}:2000;

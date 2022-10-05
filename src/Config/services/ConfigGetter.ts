@@ -11,20 +11,36 @@ export class ConfigGetter {
   }
 
   public getDomain(): string {
-    return 'localhost';
+    return this.envGetter.isDev()
+      ? 'localhost'
+      : this.envGetter.getEnv('DOMAIN');
+  }
+
+  public getApiPrefix(): string {
+    return '/static';
   }
 
   public getMinioConfig(): NestMinioOptions {
-    return {
-      endPoint: 'localhost',
-      port: 9_000,
-      useSSL: false,
-      accessKey: 'user123',
-      secretKey: 'secret123',
-    };
+    return this.envGetter.isDev()
+      ? {
+          endPoint: 'localhost',
+          port: 9_000,
+          useSSL: false,
+          accessKey: 'user123',
+          secretKey: 'secret123',
+        }
+      : {
+          endPoint: this.envGetter.getEnv('MINIO_HOST'),
+          port: 9_000,
+          useSSL: false,
+          accessKey: this.envGetter.getEnv('MINIO_USER'),
+          secretKey: this.envGetter.getEnv('MINIO_PASSWORD'),
+        };
   }
 
   public getAuthBackendDomainWithScheme(): string {
-    return 'http://localhost:3003';
+    return this.envGetter.isDev()
+      ? 'http://localhost:3003'
+      : `https://auth.${this.envGetter.getEnv('DOMAIN')}`;
   }
 }

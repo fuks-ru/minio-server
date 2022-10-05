@@ -25,7 +25,7 @@ export class MinioController {
     return this.minioService.upload(file);
   }
 
-  @Get('/static/:fileName')
+  @Get('/files/:fileName')
   @Public()
   public async static(
     @Param('fileName') fileName: string,

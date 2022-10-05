@@ -1,6 +1,5 @@
 {
   "name": "@fuks-ru/minio-server",
-  "version": "1.0.0",
   "description": "Bucket for files",
   "repository": "https://github.com/DiFuks/fuks-minio-server",
   "author": "Dmitry Fuks",
@@ -19,10 +18,9 @@
   "module": "./dist/lib/index.js",
   "types": "./dist/lib/index.d.ts",
   "devDependencies": {
-    "@fuks-ru/auth-client": "0.4.5",
-    "@fuks-ru/auth-module": "0.0.5",
+    "@fuks-ru/auth-module": "0.0.6",
     "@fuks-ru/common": "0.0.9",
-    "@fuks-ru/common-backend": "0.4.2",
+    "@fuks-ru/common-backend": "0.4.3",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/platform-express": "^9.1.2",

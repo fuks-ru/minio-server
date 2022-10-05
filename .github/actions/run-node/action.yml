@@ -1,0 +1,43 @@
+name: 'Run node container'
+description: 'Run node container'
+inputs:
+  script:
+    description: 'Script for run'
+    required: true
+  detached:
+    description: 'Detached docker mode'
+    required: false
+  secret-context:
+    description: 'Secret params'
+    required: true
+  domain:
+    description: 'Domain url'
+    required: true
+  backend-container:
+    description: 'Backend container name'
+    required: true
+  minio-container:
+    description: 'Minio container name'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run node script
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ fromJson(inputs.secret-context).SSH_HOST }}
+        username: ${{ fromJson(inputs.secret-context).SSH_NODE_USERNAME }}
+        key: ${{ fromJson(inputs.secret-context).SSH_NODE_PRIVATE_KEY }}
+        script: |
+          docker run --name ${{ inputs.backend-container }} \
+          --rm ${{ inputs.detached && '-d' }} \
+          -e PERSONAL_NPM_TOKEN="${{ fromJson(inputs.secret-context).PERSONAL_NPM_TOKEN }}" \
+          -e DOMAIN="${{ inputs.domain }}" \
+          -v "/server/${{ inputs.backend-container }}/backend/var":/app/var \
+          -e MINIO_PASSWORD="${{ fromJson(inputs.secret-context).POSTGRES_PASSWORD }}" \
+          -e MINIO_USER="${{ fromJson(inputs.secret-context).POSTGRES_USER }}" \
+          -e MINIO_HOST="${{ inputs.minio-container }}" \
+          --network="fuks-ru" \
+          difuks/minio \
+          ${{ inputs.script }}

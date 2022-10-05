@@ -23,6 +23,7 @@ import { MinioService } from 'app/Minio/servives/MinioService';
   await minioService.createDefaultBucketIfNotExists();
 
   app.useLogger(appLogger);
+  app.setGlobalPrefix(configGetter.getApiPrefix());
 
   await app.listen(configGetter.getApiPort());
 })();

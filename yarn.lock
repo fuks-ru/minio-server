@@ -118,23 +118,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-client@npm:0.4.5":
-  version: 0.4.5
-  resolution: "@fuks-ru/auth-client@npm:0.4.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-client%2F0.4.5%2F6c140d6f76b791fba4971684586fcdc58ff2c1ab"
+"@fuks-ru/auth-client@npm:0.4.6":
+  version: 0.4.6
+  resolution: "@fuks-ru/auth-client@npm:0.4.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-client%2F0.4.6%2Fa149c258f17fbd7d5d9c052364a33da50db4239d"
   dependencies:
     axios: ^0.27.2
     openapi-client-axios: ^5.1.2
   peerDependencies:
     "@fuks-ru/common": "*"
-  checksum: b050b7c9236898a91e39898cdacf847d40ebcd806cbe9972d70050e1034d5a7bbf418bbce486c72a2b4d18e6b8d182d2a4234b645859dfa48916e2e13c1ea987
+  checksum: 80d27b21565ce7da8eefc3aa0322050bdc818430fc7b97c8040b4fcb0ffff8d734e0286606393f6b9f81d651d9ff1b05e26709f0bc4fece9df621a9f5c525c69
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-module@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@fuks-ru/auth-module@npm:0.0.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-module%2F0.0.5%2Ff3f041a6b1efa2e816dd71bf8974ed7359b6eeeb"
+"@fuks-ru/auth-module@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@fuks-ru/auth-module@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-module%2F0.0.6%2Fac2b68269545db0abe2a1707c10c5ab76bdc61a5"
   dependencies:
-    "@fuks-ru/auth-client": 0.4.5
+    "@fuks-ru/auth-client": 0.4.6
     "@nestjs/passport": ^9.0.0
     passport: ^0.6.0
     passport-custom: ^1.1.1
@@ -144,13 +144,13 @@ __metadata:
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     rxjs: ^7.5.7
-  checksum: c68fc547821043ba971d6eb684a25b28b4f28176e5d2fd9909ef404d3ba0384f9475e25a0fcd47837c71646bdff6435aa854c59a7bc7b60c443929f0fd5b802d
+  checksum: f0abeffc320eae587af6bf3ae9ac88f74161e01371ad880fbfe3caef27c422190677ae4604b3395e29ddd77be2310842968b64ef00d067f56b8dbeade9dd69b0
   languageName: node
   linkType: hard
 
-"@fuks-ru/common-backend@npm:0.4.2":
-  version: 0.4.2
-  resolution: "@fuks-ru/common-backend@npm:0.4.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.4.2%2F6046bc438325da397608ee8aac67cb64f32861c4"
+"@fuks-ru/common-backend@npm:0.4.3":
+  version: 0.4.3
+  resolution: "@fuks-ru/common-backend@npm:0.4.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.4.3%2F537324ae5e01510c42676b3b4d3f6796fe88d949"
   dependencies:
     "@rollup/plugin-json": ^4.1.0
     "@types/argon2": ^0.15.0
@@ -178,7 +178,7 @@ __metadata:
     nestjs-i18n: ^9.1.3
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
-  checksum: 4ed74c269eedba5debcab258bc8edc112a36ad7fed37118a9ef83bf0683df7b513079eb4ed1af3159cbfdcc3480f926cdc297a2356c9eb451406feca84189371
+  checksum: 5998da49362a78e5bc5d8b329f941c7d8a5feaef2b66220736676b252d4de24fb45769b198d412cd1ce168db0a7f5ad02fc22fe361f9f2e76af32202c3a4264d
   languageName: node
   linkType: hard
 
@@ -193,10 +193,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fuks-ru/minio-server@workspace:."
   dependencies:
-    "@fuks-ru/auth-client": 0.4.5
-    "@fuks-ru/auth-module": 0.0.5
+    "@fuks-ru/auth-module": 0.0.6
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.4.2
+    "@fuks-ru/common-backend": 0.4.3
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     "@nestjs/platform-express": ^9.1.2

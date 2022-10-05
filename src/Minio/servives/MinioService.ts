@@ -18,7 +18,7 @@ export class MinioService {
     if (!(await this.minioClient.bucketExists(this.defaultBucket))) {
       await this.minioClient.makeBucket(this.defaultBucket, 'eu-west-1');
 
-      this.logger.log('Bucket does not exist. Created');
+      this.logger.log('Bucket does not exists. Created');
 
       return;
     }

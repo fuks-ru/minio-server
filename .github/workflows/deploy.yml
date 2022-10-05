@@ -1,0 +1,83 @@
+on:
+  workflow_call:
+    inputs:
+      domain-name:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy
+
+    runs-on: ubuntu-latest
+
+    env:
+      BACKEND_CONTAINER: minio-${{ inputs.domain-name }}
+      NGINX_CONTAINER: minio-${{ inputs.domain-name }}-nginx
+      MINIO_CONTAINER: minio-${{ inputs.domain-name }}-minio
+      DOMAIN: ${{ inputs.domain-name }}.ru
+      MINIO_DOMAIN: minio.${{ inputs.domain-name }}.ru
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Stop containers
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
+          script: |
+            docker container stop ${{ env.BACKEND_CONTAINER }} || true
+            docker container stop ${{ env.NGINX_CONTAINER }} || true
+            docker container stop ${{ env.MINIO_CONTAINER }} || true
+            docker rm ${{ env.BACKEND_CONTAINER }} || true
+            docker rm ${{ env.NGINX_CONTAINER }} || true
+            docker rm ${{ env.MINIO_CONTAINER }} || true
+
+      - name: Run minio
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
+          script: |
+            docker run --name ${{ env.MINIO_CONTAINER }} \
+            --rm -d \
+            -e "MINIO_ROOT_USER=${{ secrets.MINIO_USER }}" \
+            -e "MINIO_ROOT_PASSWORD=${{ secrets.MINIO_PASSWORD }}" \
+            -v ${PWD}/var/data:/data \
+            -v "/server/${{ env.BACKEND_CONTAINER }}/minio/data":/data \
+            --network="fuks-ru" \
+            minio/minio server /data --console-address ":9001"
+
+      - name: Run node
+        uses: ./.github/actions/run-node
+        with:
+          domain: ${{ env.DOMAIN }}
+          backend-container: ${{ env.BACKEND_CONTAINER }}
+          minio-container: ${{ env.MINIO_CONTAINER }}
+          secret-context: ${{ toJson(secrets) }}
+          detached: true
+          script: yarn prod
+
+      - name: Sleep for wait node start
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'
+
+      - name: Run nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
+          script: |
+            docker run --name ${{ env.NGINX_CONTAINER }} \
+            --rm -d \
+            -e DOMAIN=${{ env.MINIO_DOMAIN }} \
+            -e BACKEND_CONTAINER=${{ env.BACKEND_CONTAINER }} \
+            -e MINIO_CONTAINER=${{ env.MINIO_CONTAINER }} \
+            --network="fuks-ru" \
+            difuks/minio-nginx

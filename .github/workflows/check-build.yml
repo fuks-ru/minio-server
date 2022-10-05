@@ -1,0 +1,55 @@
+name: Check build
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      PERSONAL_NPM_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install modules
+        run: yarn install
+
+      - name: Eslint
+        run: yarn lint
+
+      - name: Build entries
+        run: yarn build
+
+  notification:
+    name: Notification
+
+    needs: [ build ]
+
+    runs-on: ubuntu-latest
+
+    if: always()
+
+    steps:
+      - name: Pull Request URL
+        uses: 8BitJonny/gh-get-current-pr@2.1.0
+        id: PR
+
+      - name: Send telegram message
+        uses: appleboy/telegram-action@master
+        env:
+          ACTION_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          disable_web_page_preview: true
+          message: |
+            *minio-server*
+
+            [check build](${{ env.ACTION_URL }}) by *${{ github.actor }}*
+            
+            steps: build *${{ needs.build.result == 'success' && '✅' || '⛔️' }}*
+
+            [PR](${{ steps.PR.outputs.pr_url }})

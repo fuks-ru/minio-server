@@ -11,7 +11,7 @@ export class ConfigGetter {
   }
 
   public getDomain(): string {
-    return this.envGetter.isDev() ? 'localhost' : 'fuks.ru';
+    return 'localhost';
   }
 
   public getMinioConfig(): NestMinioOptions {
@@ -19,8 +19,12 @@ export class ConfigGetter {
       endPoint: 'localhost',
       port: 9_000,
       useSSL: false,
-      accessKey: 'minio99',
-      secretKey: 'minio123',
+      accessKey: 'user123',
+      secretKey: 'secret123',
     };
+  }
+
+  public getAuthBackendDomainWithScheme(): string {
+    return 'http://localhost:3003'
   }
 }

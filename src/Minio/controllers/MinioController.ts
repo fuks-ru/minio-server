@@ -7,46 +7,42 @@ import {
   UploadedFile,
   UseInterceptors,
   StreamableFile,
+  Logger,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { MINIO_CONNECTION } from 'nestjs-minio';
-import { Client } from 'minio';
-import { v4 } from 'uuid';
 import { IUploadResponse } from 'app/Minio/dto/IUploadResponse';
+import { Public, Roles } from '@fuks-ru/auth-module';
+import { MinioService } from 'app/Minio/servives/MinioService';
 
 @Controller()
 export class MinioController {
-  public constructor(
-    @Inject(MINIO_CONNECTION) private readonly minioClient: Client,
-  ) {}
+  private readonly defaultBucket = 'static';
 
-  // TODO защищать гвардом
-  @Post('/upload/:bucket')
-  @UseInterceptors(FileInterceptor('file'))
-  public async upload(
-    @UploadedFile() file: Express.Multer.File,
-    @Param('bucket') bucket: string,
-  ): Promise<IUploadResponse> {
-    if (!(await this.minioClient.bucketExists(bucket))) {
-      await this.minioClient.makeBucket(bucket, 'eu-west-1');
-    }
+  private readonly logger = new Logger(MinioController.name);
 
-    const fileName = `${v4()}-${file.originalname}`;
+  public constructor(private readonly minioService: MinioService) {}
 
-    await this.minioClient.putObject(bucket, fileName, file.buffer);
+  @Get('/')
+  @Public()
+  public get() {
 
-    return {
-      name: fileName,
-    };
+    this.logger.error('asdsd', new Error().stack);
   }
 
-  @Get('/static/:bucket/:fileName')
+  @Post('/upload')
+  @UseInterceptors(FileInterceptor('file'))
+  @Roles('admin', 'moderator')
+  public async upload(
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<IUploadResponse> {
+    return this.minioService.upload(file);
+  }
+
+  @Get('/static/:fileName')
+  @Public()
   public async static(
-    @Param('bucket') bucket: string,
     @Param('fileName') fileName: string,
   ): Promise<StreamableFile> {
-    const result = await this.minioClient.getObject(bucket, fileName);
-
-    return new StreamableFile(result);
+    return this.minioService.get(fileName);
   }
 }

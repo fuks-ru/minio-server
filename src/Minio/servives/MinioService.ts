@@ -29,7 +29,14 @@ export class MinioService {
   public async upload(file: Express.Multer.File): Promise<IUploadResponse> {
     const fileName = `${v4()}-${file.originalname}`;
 
-    await this.minioClient.putObject(this.defaultBucket, fileName, file.buffer);
+    await this.minioClient.putObject(
+      this.defaultBucket,
+      fileName,
+      file.buffer,
+      {
+        'Content-type': file.mimetype,
+      },
+    );
 
     return {
       name: fileName,

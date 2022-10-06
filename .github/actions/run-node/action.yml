@@ -35,8 +35,8 @@ runs:
           -e PERSONAL_NPM_TOKEN="${{ fromJson(inputs.secret-context).PERSONAL_NPM_TOKEN }}" \
           -e DOMAIN="${{ inputs.domain }}" \
           -v "/server/${{ inputs.backend-container }}/backend/var":/app/var \
-          -e MINIO_PASSWORD="${{ fromJson(inputs.secret-context).POSTGRES_PASSWORD }}" \
-          -e MINIO_USER="${{ fromJson(inputs.secret-context).POSTGRES_USER }}" \
+          -e MINIO_PASSWORD="${{ fromJson(inputs.secret-context).MINIO_PASSWORD }}" \
+          -e MINIO_USER="${{ fromJson(inputs.secret-context).MINIO_USER }}" \
           -e MINIO_HOST="${{ inputs.minio-container }}" \
           --network="fuks-ru" \
           difuks/minio \

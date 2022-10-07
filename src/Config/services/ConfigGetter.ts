@@ -10,10 +10,10 @@ export class ConfigGetter {
     return 2_000;
   }
 
-  public getDomain(): string {
+  public getCookieDomain(): string {
     return this.envGetter.isDev()
       ? 'localhost'
-      : this.envGetter.getEnv('DOMAIN');
+      : `.${this.envGetter.getEnv('DOMAIN')}`;
   }
 
   public getApiPrefix(): string {
@@ -26,8 +26,8 @@ export class ConfigGetter {
           endPoint: 'localhost',
           port: 9_000,
           useSSL: false,
-          accessKey: 'user123',
-          secretKey: 'secret123',
+          accessKey: 'minioadmin',
+          secretKey: 'minioadmin',
         }
       : {
           endPoint: this.envGetter.getEnv('MINIO_HOST'),

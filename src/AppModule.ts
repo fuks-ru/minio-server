@@ -12,7 +12,7 @@ import { AuthModule } from '@fuks-ru/auth-module';
     CommonModule.forRootAsync({
       inject: [ConfigGetter],
       useFactory: (configGetter: ConfigGetter) => ({
-        domain: configGetter.getDomain(),
+        sessionCookieDomain: configGetter.getCookieDomain(),
         apiPrefix: '/',
       }),
     }),

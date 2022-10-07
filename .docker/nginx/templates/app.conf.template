@@ -2,6 +2,12 @@ server {
   listen 80;
   server_name minio.${DOMAIN};
 
+  location / {
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header Host $http_host;
+    proxy_pass http://minio:9000;
+  }
+
   location /${BUCKET_NAME} {
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $http_host;

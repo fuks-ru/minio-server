@@ -1,15 +1,12 @@
 import {
   Controller,
-  Get,
-  Param,
   Post,
   UploadedFile,
   UseInterceptors,
-  StreamableFile,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { IUploadResponse } from 'app/Minio/dto/IUploadResponse';
-import { Public, Roles } from '@fuks-ru/auth-module';
+import { Roles } from '@fuks-ru/auth-module';
 import { MinioService } from 'app/Minio/servives/MinioService';
 
 @Controller()
@@ -23,13 +20,5 @@ export class MinioController {
     @UploadedFile() file: Express.Multer.File,
   ): Promise<IUploadResponse> {
     return this.minioService.upload(file);
-  }
-
-  @Get('/files/:fileName')
-  @Public()
-  public async static(
-    @Param('fileName') fileName: string,
-  ): Promise<StreamableFile> {
-    return this.minioService.get(fileName);
   }
 }

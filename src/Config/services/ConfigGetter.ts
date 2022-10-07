@@ -16,8 +16,10 @@ export class ConfigGetter {
       : `.${this.envGetter.getEnv('DOMAIN')}`;
   }
 
-  public getApiPrefix(): string {
-    return '/static-bucket';
+  public getBucketName(): string {
+    return this.envGetter.isDev()
+      ? 'dev-bucket'
+      : this.envGetter.getEnv('BUCKET_NAME');
   }
 
   public getMinioConfig(): NestMinioOptions {
@@ -30,7 +32,7 @@ export class ConfigGetter {
           secretKey: 'minioadmin',
         }
       : {
-          endPoint: this.envGetter.getEnv('MINIO_HOST'),
+          endPoint: 'minio',
           port: 9_000,
           useSSL: false,
           accessKey: this.envGetter.getEnv('MINIO_USER'),

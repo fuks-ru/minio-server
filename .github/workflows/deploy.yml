@@ -14,9 +14,9 @@ jobs:
     env:
       BACKEND_CONTAINER: minio-${{ inputs.domain-name }}
       NGINX_CONTAINER: minio-${{ inputs.domain-name }}-nginx
-      MINIO_CONTAINER: minio-${{ inputs.domain-name }}-minio
       DOMAIN: ${{ inputs.domain-name }}.ru
       MINIO_DOMAIN: minio.${{ inputs.domain-name }}.ru
+      BUCKET_NAME: ${{ inputs.domain-name }}
 
     steps:
       - name: Checkout
@@ -31,25 +31,10 @@ jobs:
           script: |
             docker container stop ${{ env.BACKEND_CONTAINER }} || true
             docker container stop ${{ env.NGINX_CONTAINER }} || true
-            docker container stop ${{ env.MINIO_CONTAINER }} || true
+            docker container stop minio || true
             docker rm ${{ env.BACKEND_CONTAINER }} || true
             docker rm ${{ env.NGINX_CONTAINER }} || true
-            docker rm ${{ env.MINIO_CONTAINER }} || true
-
-      - name: Run minio
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_NODE_USERNAME }}
-          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
-          script: |
-            docker run --name ${{ env.MINIO_CONTAINER }} \
-            --rm -d \
-            -e "MINIO_ROOT_USER=${{ secrets.MINIO_USER }}" \
-            -e "MINIO_ROOT_PASSWORD=${{ secrets.MINIO_PASSWORD }}" \
-            -v "/server/${{ env.BACKEND_CONTAINER }}/minio/data":/data \
-            --network="fuks-ru" \
-            minio/minio server /data --console-address ":9001"
+            docker rm minio || true
 
       - name: Run node
         uses: ./.github/actions/run-node
@@ -78,5 +63,6 @@ jobs:
             -e DOMAIN=${{ env.MINIO_DOMAIN }} \
             -e BACKEND_CONTAINER=${{ env.BACKEND_CONTAINER }} \
             -e MINIO_CONTAINER=${{ env.MINIO_CONTAINER }} \
+            -e BUCKET_NAME=${{ env.BUCKET_NAME }} \
             --network="fuks-ru" \
             difuks/minio-nginx

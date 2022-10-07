@@ -2,13 +2,13 @@ server {
   listen 80;
   server_name minio.${DOMAIN};
 
-  location / {
+  location /${BUCKET_NAME} {
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $http_host;
-    proxy_pass http://${MINIO_CONTAINER}:9001;
+    proxy_pass http://minio:9001;
   }
 
-  location /static-bucket {
+  location /upload {
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $http_host;
     proxy_pass http://${BACKEND_CONTAINER}:2000;

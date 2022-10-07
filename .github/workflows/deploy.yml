@@ -39,7 +39,7 @@ jobs:
         with:
           domain: ${{ env.DOMAIN }}
           backend-container: ${{ env.BACKEND_CONTAINER }}
-          minio-container: ${{ env.MINIO_CONTAINER }}
+          bucket-name: ${{ env.BUCKET_NAME }}
           secret-context: ${{ toJson(secrets) }}
           detached: true
           script: yarn prod

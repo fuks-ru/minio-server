@@ -16,6 +16,9 @@ inputs:
   backend-container:
     description: 'Backend container name'
     required: true
+  backend-name:
+    description: 'Bucket name'
+    required: true
 
 runs:
   using: composite
@@ -35,6 +38,7 @@ runs:
           -e MINIO_PASSWORD="${{ fromJson(inputs.secret-context).MINIO_PASSWORD }}" \
           -e MINIO_USER="${{ fromJson(inputs.secret-context).MINIO_USER }}" \
           -e MINIO_HOST="minio" \
+          -e BUCKET_NAME="${{ inputs.bucket-name }}" \
           --network="fuks-ru" \
           difuks/minio \
           ${{ inputs.script }}

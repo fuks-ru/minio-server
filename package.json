@@ -18,9 +18,9 @@
   "module": "./dist/lib/index.js",
   "types": "./dist/lib/index.d.ts",
   "devDependencies": {
-    "@fuks-ru/auth-module": "0.0.6",
-    "@fuks-ru/common": "0.0.9",
-    "@fuks-ru/common-backend": "0.5.0",
+    "@fuks-ru/auth-module": "0.0.7",
+    "@fuks-ru/common": "0.1.0",
+    "@fuks-ru/common-backend": "0.5.2",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/platform-express": "^9.1.2",

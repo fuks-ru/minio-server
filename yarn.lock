@@ -118,23 +118,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-client@npm:0.4.6":
-  version: 0.4.6
-  resolution: "@fuks-ru/auth-client@npm:0.4.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-client%2F0.4.6%2Fa149c258f17fbd7d5d9c052364a33da50db4239d"
+"@fuks-ru/auth-client@npm:0.4.7":
+  version: 0.4.7
+  resolution: "@fuks-ru/auth-client@npm:0.4.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-client%2F0.4.7%2Fa910c2f431621cc052785bea9b88af873b6eb7af"
   dependencies:
     axios: ^0.27.2
     openapi-client-axios: ^5.1.2
   peerDependencies:
     "@fuks-ru/common": "*"
-  checksum: 80d27b21565ce7da8eefc3aa0322050bdc818430fc7b97c8040b4fcb0ffff8d734e0286606393f6b9f81d651d9ff1b05e26709f0bc4fece9df621a9f5c525c69
+  checksum: 599dd5c2ce025ae2cb21184074037d6e7cb4efbe923b47c180d4f7186dbe4892ab0a38005e1a91b98f4cfe69d5b64ac91aa499f09909cae1c33ad8212ed8aeee
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-module@npm:0.0.6":
-  version: 0.0.6
-  resolution: "@fuks-ru/auth-module@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-module%2F0.0.6%2Fac2b68269545db0abe2a1707c10c5ab76bdc61a5"
+"@fuks-ru/auth-module@npm:0.0.7":
+  version: 0.0.7
+  resolution: "@fuks-ru/auth-module@npm:0.0.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-module%2F0.0.7%2Ff2d58c294b2fded7c951f5cc585ba1f42d054bad"
   dependencies:
-    "@fuks-ru/auth-client": 0.4.6
+    "@fuks-ru/auth-client": 0.4.7
     "@nestjs/passport": ^9.0.0
     passport: ^0.6.0
     passport-custom: ^1.1.1
@@ -144,13 +144,13 @@ __metadata:
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     rxjs: ^7.5.7
-  checksum: f0abeffc320eae587af6bf3ae9ac88f74161e01371ad880fbfe3caef27c422190677ae4604b3395e29ddd77be2310842968b64ef00d067f56b8dbeade9dd69b0
+  checksum: bd7335261652a6a115d8866fbc65b0b5bf70f8b2f0d5d7679b6f759e6d9691d11c8557d9e94036a987383721ec1bcb6802ab1bc423b4734d82a7d74e958d802a
   languageName: node
   linkType: hard
 
-"@fuks-ru/common-backend@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@fuks-ru/common-backend@npm:0.5.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.5.0%2F001d5d308196316dd4aefb0077a6e33600c2e467"
+"@fuks-ru/common-backend@npm:0.5.2":
+  version: 0.5.2
+  resolution: "@fuks-ru/common-backend@npm:0.5.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.5.2%2F4b515bfe6bb469425070a93374af26c19ccc3b8a"
   dependencies:
     "@rollup/plugin-json": ^4.1.0
     "@types/argon2": ^0.15.0
@@ -178,14 +178,16 @@ __metadata:
     nestjs-i18n: ^9.1.3
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
-  checksum: f00d4f18ae2f4d8723bb6d7c9031e9115eb9fda229c302d61ec6b368930d61a6c1b707ea7668f75434cf04229fc777e73cb1c47dea1252dbf0b70cb5e8cf9e49
+  checksum: eee3aa775e4ddeb087354c5be81605272afc0bd179a09bf6636ea788ae32e6ba15221081d9d4518d6ec7dd6b08566ab745f5e70c0d7fcdb5e122496e09747831
   languageName: node
   linkType: hard
 
-"@fuks-ru/common@npm:0.0.9":
-  version: 0.0.9
-  resolution: "@fuks-ru/common@npm:0.0.9::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.9%2F4c1dc86be3d525feb345c8bb96c401661858addf"
-  checksum: fd1481a00d0162f9111133163ecb8dfcd9c8380c9bf04ef24aea6d9d627ae4319ee5f564d3827904949c74c6ea7cb5ca57b90ac0008d68b48f7c4e04c8d54366
+"@fuks-ru/common@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@fuks-ru/common@npm:0.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.1.0%2F8318c956097de51ef775c33816659f6dcd21240d"
+  peerDependencies:
+    openapi-client-axios: ^5.3.0
+  checksum: eca1ba91f30dacaee279fd54e7e255207369ca3af59e01b0d08fb63de468ae59ba185cc929bd16075f9a2ffb7f7ac8a8081774ce3a374bdb68fe829e184bfca1
   languageName: node
   linkType: hard
 
@@ -193,9 +195,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fuks-ru/minio-server@workspace:."
   dependencies:
-    "@fuks-ru/auth-module": 0.0.6
-    "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.5.0
+    "@fuks-ru/auth-module": 0.0.7
+    "@fuks-ru/common": 0.1.0
+    "@fuks-ru/common-backend": 0.5.2
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     "@nestjs/platform-express": ^9.1.2

@@ -130,11 +130,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-module@npm:0.1.1":
-  version: 0.1.1
-  resolution: "@fuks-ru/auth-module@npm:0.1.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-module%2F0.1.1%2Fb6a805288d2bac73cf194895e49e5f63ba6c469b"
+"@fuks-ru/auth-module@npm:0.2.0":
+  version: 0.2.0
+  resolution: "@fuks-ru/auth-module@npm:0.2.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fauth-module%2F0.2.0%2F7ad483c255ae9be89f34cb4837544453cb462ce3"
   dependencies:
     "@fuks-ru/auth-client": 0.9.0
+    "@nestjs/passport": ^9.0.0
     passport: ^0.6.0
     passport-custom: ^1.1.1
   peerDependencies:
@@ -142,9 +143,8 @@ __metadata:
     "@fuks-ru/common-backend": 0.3.7
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
-    "@nestjs/passport": ^9.0.0
     rxjs: ^7.5.7
-  checksum: 11263c4c826b1c01b97aeb02ee4d32c6c0e62e697620618f678a7d9911a06d9701bf19575dc5a303a6584908a76549ecaaafc2935073cde0bf3eb4926ad57013
+  checksum: de44f66c61c78976997e32e94378c6234278f4d026475363b70529baa588040c4ac050bc76ccc0e69e4117e8765a1c85950ef0ef9c9e915cac7695b28e750b1f
   languageName: node
   linkType: hard
 
@@ -196,12 +196,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fuks-ru/minio-server@workspace:."
   dependencies:
-    "@fuks-ru/auth-module": 0.1.1
+    "@fuks-ru/auth-module": 0.2.0
     "@fuks-ru/common": 0.1.0
     "@fuks-ru/common-backend": 0.6.1
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
-    "@nestjs/passport": ^9.0.0
     "@nestjs/platform-express": ^9.1.2
     "@nestjs/swagger": ^6.1.2
     "@rushstack/eslint-patch": ^1.2.0

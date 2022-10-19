@@ -7,9 +7,8 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { IUploadResponse } from 'app/Minio/dto/IUploadResponse';
-import { Roles, RolesGuard } from '@fuks-ru/auth-module';
+import { Roles, RolesGuard, AuthJwtGuard } from '@fuks-ru/auth-module';
 import { MinioService } from 'app/Minio/servives/MinioService';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller()
 export class MinioController {
@@ -18,7 +17,7 @@ export class MinioController {
   @Post('/upload')
   @UseInterceptors(FileInterceptor('file'))
   @Roles('admin', 'moderator')
-  @UseGuards(AuthGuard('auth-jwt'), RolesGuard)
+  @UseGuards(AuthJwtGuard, RolesGuard)
   public async upload(
     @UploadedFile() file: Express.Multer.File,
   ): Promise<IUploadResponse> {

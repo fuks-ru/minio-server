@@ -15,12 +15,11 @@
     "lint:fix": "yarn run lint --fix"
   },
   "devDependencies": {
-    "@fuks-ru/auth-module": "0.1.1",
+    "@fuks-ru/auth-module": "0.2.0",
     "@fuks-ru/common": "0.1.0",
     "@fuks-ru/common-backend": "0.6.1",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
-    "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.1.2",
     "@nestjs/swagger": "^6.1.2",
     "@rushstack/eslint-patch": "^1.2.0",
